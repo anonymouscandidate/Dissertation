@@ -1,0 +1,46 @@
+---
+title: "Spectrogram code"
+date: "2024-05-07"
+output: html_document
+---
+
+Load packages:
+```{r}
+library(tuneR)
+library(seewave)
+library(viridis)
+```
+
+Load audio file. Example:
+```{r}
+sound_wave <- readWave("unfiltered.WAV")
+
+png(filename = "spectrogram.png",
+    width = 10,
+    height = 5,
+    units = "in",
+    res = 1000)
+
+spectro(sound_wave, channel = 1, wl = 480, wn = "hanning", zp = 0,
+        ovlp = 50, noisereduction = NULL, fastdisp = FALSE,
+        complex = FALSE, norm = TRUE, correction="none",
+        fftw = FALSE, dBref = NULL, plot = TRUE,
+        flog = FALSE, grid = TRUE, osc = FALSE, scale = TRUE, cont = FALSE,
+        collevels = NULL, palette = reverse.topo.colors,
+        contlevels = NULL, colcont = "black",
+        colbg = "white", colgrid = "black",
+        colaxis = "black", collab="black",
+        cexlab = 1, cexaxis = 0.75, 
+        tlab = "Time (s)",
+        flab = "Frequency (kHz)",
+        alab = "Amplitude",
+        scalelab = "Amplitude\n(dB)",
+        main = "Unfiltered",
+        scalefontlab = 1, scalecexlab =0.75,
+        axisX = TRUE, axisY = TRUE, tlim = NULL, trel = TRUE,
+        flim = NULL, flimd = NULL,
+        widths = c(4,1), heights = c(1.8,1),
+        oma = rep(0,4))
+
+dev.off()
+```
